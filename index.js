@@ -22,27 +22,6 @@ app.use('/health',healthRoute);
 app.use('/event',eventRoute);
 app.use('/login',loginRoute)
 
-app.get("/users", async (request, response) => {
-    const users = await userModel.find({});
-  
-    try {
-      response.send(users);
-    } catch (error) {
-      response.status(500).send(error);
-    }
-});
-
-app.get("/add_user", async (request, response) => {
-    const user = new userModel({id:uuid.v4(),name:"New Model with unique id"});
-
-    try {
-        await user.save();
-        response.send(user);
-    } catch (error) {
-        response.status(500).send(error);
-    }
-});
-
 app.listen(3000,async()=>{
     // Connection to MongoDb
     try{
